@@ -137,6 +137,12 @@
   5. blocks inline js
   6. CSP allows only trusted domains
   7. CSP can't fully replace secure coding but greatly reduces XSS impact.
+  8. DOMpurify use sanitize
+  9. upload accept only required formates
+  10. div.innerHTML = userInput; don't use and don't use dangeroushtnml
+  11. use Http only cookies
+
+
 
 
 
