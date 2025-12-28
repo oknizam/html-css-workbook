@@ -86,6 +86,41 @@
     4. gap : equally give space elemnts in grid
 
 
+# 11. rem vs em
+
+  1. rem -> root level fontsize (html) if don't set explicitly, browser set by default 
+  2. em -> parent font-size if no root
+
+
+  example: html{ 
+    font-size: 16px;
+  }
+
+  .p{
+    font-size: 2rem means 32px
+  }
+
+
+  .parent-em{
+     font-size: 20px;
+  }
+
+  .child{
+    font-size: 2em;  -> 1rem -> 40 px 
+  }
+
+# 12. Position
+
+  1. Static -> defualt postion , normal flow of document ,left,right,top,bottom will not work
+  2. relative -> element will not be removed from its normal flow , we can move element here
+  3. absolute -> Element will be removed from normal flow, we can move element here
+  4. fixed ->  removed from normal flow, postioned to viewport
+  5. sticky -> acts as relative , when we scroll then fixed
+
+# 13. Z-index 
+  used to stack one element over other
+  z-inde: 2 > z-index : 1
+  work with absolute, relative ,sticky, and fixed
 
 
 
