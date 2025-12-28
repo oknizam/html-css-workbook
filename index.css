@@ -1,0 +1,76 @@
+ html {
+        font-size: 16px; /* root font size */
+ }
+
+
+.title{
+  color:blue
+}
+
+#title{
+  color:green
+}
+
+#title:hover{
+color:purple
+}
+
+/* content come before element content */
+
+.clickBtn::before{
+  content:"hey "
+}
+
+/* content come after element content*/
+
+.clickBtn::after{
+  content:" !"
+}
+
+/* apply css to selected text */
+.selction-text::selection{
+  background:blue
+}
+/* first letter */
+
+.letter::first-letter{
+  color:red
+}
+
+/* grid  columns and row*/
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 15px;
+  padding: 20px;
+}
+
+
+/* grid   row*/
+.grid-container-row {
+  display: grid;
+  grid-template-row: repeat(3, 1fr); 
+  gap: 15px;
+  padding: 20px;
+}
+
+.box {
+  background: lightblue;
+  padding: 20px;
+  border: 1px solid #000;
+  text-align: center;
+  font-size: 20px;
+}
+
+
+ .parent {
+        font-size: 2rem; /* 32px */
+      }
+
+      .child-em {
+        font-size: 1.5em; /* 1.5 * parent font-size = 48px */
+      }
+
+      .child-rem {
+        font-size: 1.5rem; /* 1.5 * root font-size = 24px */
+ }
