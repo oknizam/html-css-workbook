@@ -1,3 +1,5 @@
+import { singletonInstane } from "./singleton.js";
+
 let expensiveCodeEle = document.getElementById("expensive");
 let colorChangeEle = document.getElementById("colorChange");
 
@@ -25,4 +27,12 @@ colorChangeEle.addEventListener("click", () => {
     document.body.style.background = "white"
   }
 });
+
+
+
+//  singleton pattern
+
+
+singletonInstane.addItems("Books");
+console.log(singletonInstane.getItems())
 
