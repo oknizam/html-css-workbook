@@ -223,6 +223,185 @@
     console.log(`Hello ${name}`);
   }
 
+18. Prototype chain 
+  In other laungauges, inheritance like getting propoties and methods of other classes by extending them.
+
+  but in js, objects inherits methods and propoties of other objects directly using prototype chain
+
+  Javascript is object based and inheritance is achived using prototype
+
+  Two types of prototypal inheritance
+  ------------------------------------
+  1. Prototype -> which is used with contructor function to achive inheritance
+  2. __proto__ -> which is used to achive inheritence of objects 
+
+  const arr = new Array();
+  here arr is an instnace of Array
+
+  arr.__proto__ === Array.prototype; // true
+
+  Custom example: 
+
+  function Person (name) {
+    this.name = name;
+  }
+
+  Person.prototype.sayHi = function(){
+    return this.name;
+  }
+
+  const p = new Person("Nizam");
+  p.__proto__ === Person.prototype; // true
+
+  <!-- inheritance -->
+
+  const p1 = Object.create(p);
+
+  p1.__proto__ // has its own propoties
+  p1.__proto__.__proto__ // has methods and propoties of p
+
+
+19. Prototype 
+
+    It is used with constructor function to create prototypes which can use by their instances
+
+    default example: const arr = new Array();
+
+    console.log(Array.prototype)  // you will get all methods and propoties of Array constrcutor function
+
+20. __proto__ 
+
+    This is similar to if we create an instance from constructor function like above
+
+     const arr = new Array();
+
+     arr.__proto__ === Array.Prototype;
+
+21. Object.create 
+
+    This will create new object and add propoties of another object from it is created in ints __proto__
+    those propoties can also be accessed by this object 
+
+      const p1 = Object.create(p);
+
+      p1.__proto__ // has its own propoties
+      p1.__proto__.__proto__ // has methods and propoties of p
+
+22. Prototype Chian
+
+    const arr = new Array();
+
+    arr.__proto__.__proto__.__proto__
+
+         arr
+    ↓ __proto__
+    Array.prototype
+    ↓ __proto__
+    Object.prototype
+    ↓ __proto__
+    null
+
+23. Object.freeze and Object.seal
+
+    1. Object.freeze 
+      1. Cannot add new propoties
+      2. cannot delete propoties
+      3. cannot modify values
+
+    2. Object.seal
+      1. Cannot add new propoties
+      2. cannot delete propoties
+      3. modify values
+
+
+24. shallow copy and deep copy
+
+    Shallow Copy
+    -------------
+    1. spread operator
+    2. Object.assign({},obj)
+    3. Arrays with spread and arr.slice()
+
+
+    Deep copy
+    -----------
+    1. custom function
+    2. JSON.parse(JSON.stringify(obj))  
+       this will loose  undefined, function, map ,sets, date instance, more memory usage, block main thread, 
+
+
+25. property descriptor
+
+how property in object behaves
+
+const obj = {};
+
+Object.defineProperty(obj, 'a', {
+  value: 10,
+  writable: false,
+  enumerable: false,
+  configurable: false
+});
+
+
+26. this keyword
+  
+  Globally if strict mode is not enabled this means window Object all js features
+  like fetch,location
+
+  if  we tring to access within object 
+  let obj = {
+    name: "nizam",
+    getName(){
+      return this.name
+    }
+  }
+  here this belongs to object
+
+27. call, bind , apply methods , this here also how it works
+
+    1. call method
+    call function with explicitly setting this = passing object and also additional parameters with comma seperated
+
+    function sayHello(age){
+        console.log(this.name,age)  // if u call this function it will return undefined
+    }
+
+    let obj ={
+      name:"nizam"
+    }
+    but with call
+
+    sayHello.call(obj,27)
+
+    2. apply 
+    same as call but arguments are passed in array
+
+     function sayHello(...arr){
+        console.log(this.name,arr[0])  // if u call this function it will return undefined
+    }
+
+    let obj ={
+      name:"nizam"
+    }
+    but with call
+
+    sayHello.apply(obj,["27"])
+
+
+     2. bind method
+    bind similar to call just return new function with explicitly setting this = passing object and also additional parameters with comma seperated
+
+    function sayHello(age){
+        console.log(this.name,age)  // if u call this function it will return undefined
+    }
+
+    let obj ={
+      name:"nizam"
+    }
+    but with call
+
+    const sayHi = sayHello.bind(obj,27)
       
     
     

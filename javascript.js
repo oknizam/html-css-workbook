@@ -189,3 +189,175 @@ function greet(name, age) {
 }
 
 greet("Nizam"); // Hello Nizam, age undefined
+
+
+// prototype with constructor function
+
+const arr = new Array();
+
+console.log("prototype", Array.prototype);
+
+
+// __proto__ with object
+
+console.log("__proto__", arr.__proto__);
+
+console.log(arr.__proto__ === Array.prototype);
+
+
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.sayHi = function () {
+  return this.name;
+}
+
+const p = new Person("Nizam");
+
+console.log(p) // normal object propoties
+console.log(p.__proto__) // prototype prpoties
+
+// prototypel inheritance
+
+const p1 = Object.create(p);
+
+console.log(p1) // their own propeties
+console.log(p1.__proto__) // p object propeties
+console.log(p1.__proto__.__proto__) // p.__proto__  propeties // this we call it as prototype chaining
+
+
+// prototype chaining
+
+console.log(p1.__proto__.__proto__.__proto__)  // own propoties -> p properties -> p.__proto__ properties -> p1.__proto__.__proto__.__proto__ object properties -> p1.__proto__.__proto__.__proto__.__proto__ -> null
+
+// Object.freeze and Object.seal
+
+const objectFreeze = {
+  name: "nizam"
+}
+
+Object.freeze(objectFreeze);
+
+// nothing work
+objectFreeze.a = 10;
+objectFreeze.name = "rahul";
+delete objectFreeze.name;
+
+console.log("objectFreeze", objectFreeze)
+
+const objectSeal = {
+  name: "nizam"
+}
+
+Object.seal(objectSeal);
+
+// modify value work work
+objectSeal.a = 10;
+objectSeal.name = "rahul";
+delete objectSeal.name;
+
+console.log("objectSeal", objectSeal)
+
+// shallow and deep copy
+const a1 = {
+  name: "nizam",
+}
+const b = { ...a1 }
+const c = Object.assign({}, a1);
+
+// for arrays
+let array = [1, 2, 3, 4];
+
+const array1 = [...array];
+const array2 = array.slice();
+
+// deep copy
+
+function deepClone(obj) {
+  if (obj === null || typeof obj !== 'object') return obj;
+
+  const copy = Array.isArray(obj) ? [] : {};
+
+  for (let key in obj) {
+    copy[key] = deepClone(obj[key]);
+  }
+  return copy;
+}
+
+
+// property descriptor, according to below config not able to update value , type
+
+const obj3 = {};
+
+Object.defineProperty(obj3, 'a', {
+  value: 10,
+  writable: false,
+  enumerable: false,
+  configurable: false
+});
+
+
+console.log(obj3.a)
+
+// getter setter
+
+const user = {
+  firstName: "Nizam",
+  lastName: "Ahmed",
+
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+
+  set fullName(name) {
+    const [first, last] = name.split(" ");
+    this.firstName = first;
+    this.lastName = last;
+  }
+};
+
+console.log(user.fullName);       // getter → "Nizam Ahmed"
+user.fullName = "John Doe";       // setter
+console.log(user.firstName);      // John
+
+
+// this keyword
+
+console.log(this) // without strict mode , with strcit undefined
+
+const obje4 = {
+  name: "nizam",
+  getName() {
+    return this.name
+  }
+}
+
+
+console.log(obje4.getName())
+
+// this with call, bind, apply
+
+function sayHello(...age) {
+  console.log("Hello ", this.name, age[0])
+}
+
+// 1. call
+
+sayHello.call(obje4, "27")
+
+
+// 2. apply
+
+sayHello.apply(obje4, ["27"])
+
+// 3. bind
+
+
+const sayHellobind = sayHello.bind(obje4, "27")
+sayHellobind()
+
+
+
+
+
