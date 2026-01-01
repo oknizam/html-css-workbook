@@ -417,7 +417,41 @@ const reducerResultWithPolyfill = numbers.reduce((acc, num) => num + acc, 0);
 
 console.log(reducerResult, reducerResultWithPolyfill);
 
+// array to object 
 
+const users = [
+  { id: 1, name: "Nizam" },
+  { id: 2, name: "Ali" }
+];
+
+let objectUsers = users.myReducer((acc, user) => {
+  acc[user.id] = user;
+  return acc;
+}, {})
+
+console.log(objectUsers)
+
+// grouping
+
+const people = [
+  { age: 20 }, { age: 20 }, { age: 30 }
+];
+
+let groupPeople = people.myReducer((acc, user) => {
+  acc[user.age] = acc[user.age] || [];
+  acc[user.age].push(user);
+  return acc;
+}, {})
+
+console.log(groupPeople)
+
+// flatten one level
+
+const arr2 = [[1, 2], [3, 4]];
+
+const flatArr = arr2.myReducer((acc, item) => [...acc, ...item], []);
+
+console.log(flatArr)
 
 
 
