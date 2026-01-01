@@ -418,3 +418,36 @@ Object.defineProperty(obj, 'a', {
   2. array into objects
   3. grouping
   4. flatten
+
+30. forEach and map
+
+  we know foreach just to iterate an array and map will return new array 
+
+31. Array destructuring
+
+32. Diffrence between splice and slice
+
+slice -> create new array with index value, old remain same, used to create array shallow copy
+splice -> create new array but old array also get modified, replace we will use splice 3 index
+
+33. Remove duplicates from array
+
+34. flatten array
+
+35. immutability
+
+  once value is created , it can't be changed how can we do that
+
+  let arr = [1,2];
+  arr.push(3) // mutable wrong
+
+  const newArr = [...arr, 3] // immutable
+
+
+36. Use Timsort (hybrid of merge + insertion sort) -> sort()
+
+[10, 2, 1].sort();  // char sort work
+// ["1", "10", "2"] → [1, 10, 2]
+
+[10, 2, 1].sort((a, b) => a - b); // numeric sort
+

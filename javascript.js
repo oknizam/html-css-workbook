@@ -362,96 +362,51 @@ sayHellobind()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const mapResult = numbers.map((num) => num * 2);
-
-// creating polyfill for map
-
-Array.prototype.myMap = function (callback) {
-  let result = [];
-  for (let i = 0; i < this.length; i++) {
-    result.push(callback(this[i], i, this))
-  }
-  return result;
-}
-
-const mapResultWithPolyfill = numbers.myMap((num) => num * 2);
-
-console.log(mapResult, mapResultWithPolyfill);
+console.log(mapResult);
 
 // filter 
 
 const filterResult = numbers.filter((num) => num % 2);
-
-// creating polyfill for filter
-Array.prototype.myfilter = function (callback) {
-  let result = [];
-  for (let i = 0; i < this.length; i++) {
-    if (callback(this[i], i, this)) {
-      result.push(this[i])
-    }
-  }
-  return result;
-}
-
-const filterResultWithPolyfill = numbers.myfilter((num) => num % 2);
-
-console.log(filterResult, filterResultWithPolyfill);
+console.log(filterResult);
 
 // reducer
 const reducerResult = numbers.reduce((acc, num) => num + acc, 0);
 
 
-// creating polyfill for reducer
-Array.prototype.myReducer = function (callback, initialValue) {
-  let acc = initialValue
-  for (let i = 0; i < this.length; i++) {
-    if (!acc) {
-      acc = this[i];
-    } else {
-      acc = callback(acc, this[i], i, this)
-    }
-  }
-  return acc;
-}
+console.log(reducerResult);
 
-const reducerResultWithPolyfill = numbers.reduce((acc, num) => num + acc, 0);
 
-console.log(reducerResult, reducerResultWithPolyfill);
 
-// array to object 
+// Array destructuring
 
-const users = [
-  { id: 1, name: "Nizam" },
-  { id: 2, name: "Ali" }
-];
+let testArray = [1, 2, 3];
 
-let objectUsers = users.myReducer((acc, user) => {
-  acc[user.id] = user;
-  return acc;
-}, {})
+const [first, , third] = testArray;
 
-console.log(objectUsers)
+console.log(first, third);
 
-// grouping
+const [one, ...rest] = testArray;
 
-const people = [
-  { age: 20 }, { age: 20 }, { age: 30 }
-];
+console.log(one, rest);
 
-let groupPeople = people.myReducer((acc, user) => {
-  acc[user.age] = acc[user.age] || [];
-  acc[user.age].push(user);
-  return acc;
-}, {})
+// slice and splice
+const slicedArr = testArray.slice(1, 2);
+console.log("slice", slicedArr, testArray);
 
-console.log(groupPeople)
+const splicedArr = testArray.splice(1, 2, 20, 30);
 
-// flatten one level
+console.log("spliced and replace", slicedArr, testArray);
 
-const arr2 = [[1, 2], [3, 4]];
 
-const flatArr = arr2.myReducer((acc, item) => [...acc, ...item], []);
+const arr4 = [1, 2];
+// arr4.push(3) // mutable wrong
 
-console.log(flatArr)
+const newArr = [...arr4, 3] // immutable
+
+
+
+
+
 
 
 
