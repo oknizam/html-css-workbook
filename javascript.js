@@ -357,6 +357,70 @@ sayHello.apply(obje4, ["27"])
 const sayHellobind = sayHello.bind(obje4, "27")
 sayHellobind()
 
+// map 
+
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+
+const mapResult = numbers.map((num) => num * 2);
+
+// creating polyfill for map
+
+Array.prototype.myMap = function (callback) {
+  let result = [];
+  for (let i = 0; i < this.length; i++) {
+    result.push(callback(this[i], i, this))
+  }
+  return result;
+}
+
+const mapResultWithPolyfill = numbers.myMap((num) => num * 2);
+
+console.log(mapResult, mapResultWithPolyfill);
+
+// filter 
+
+const filterResult = numbers.filter((num) => num % 2);
+
+// creating polyfill for filter
+Array.prototype.myfilter = function (callback) {
+  let result = [];
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i], i, this)) {
+      result.push(this[i])
+    }
+  }
+  return result;
+}
+
+const filterResultWithPolyfill = numbers.myfilter((num) => num % 2);
+
+console.log(filterResult, filterResultWithPolyfill);
+
+// reducer
+const reducerResult = numbers.reduce((acc, num) => num + acc, 0);
+
+
+// creating polyfill for reducer
+Array.prototype.myReducer = function (callback, initialValue) {
+  let acc = initialValue
+  for (let i = 0; i < this.length; i++) {
+    if (!acc) {
+      acc = this[i];
+    } else {
+      acc = callback(acc, this[i], i, this)
+    }
+  }
+  return acc;
+}
+
+const reducerResultWithPolyfill = numbers.reduce((acc, num) => num + acc, 0);
+
+console.log(reducerResult, reducerResultWithPolyfill);
+
+
+
+
+
 
 
 

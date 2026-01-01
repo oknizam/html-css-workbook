@@ -403,6 +403,12 @@ Object.defineProperty(obj, 'a', {
 
     const sayHi = sayHello.bind(obj,27)
       
-    
-    
 
+28. map, filter and reducer
+
+  1. These three functions are hidger order functions
+  2. Higher order functions are function whcih takes another function as argument or return another function
+  3. map -> used to update array items and return new array with updated data
+  4. filter -> return filtered array based on condition  
+  5. reducer -> return single value performing calculation stroring it in single variable which we call it as accumulator
+  
