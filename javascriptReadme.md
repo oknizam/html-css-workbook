@@ -577,4 +577,24 @@ splice -> create new array but old array also get modified, replace we will use 
     lookup will be created, if same property ur accessing mutiple time it will not look it in prototype chain it will directly fetch from inline cache which is lookup
   5. Grabage colloector 
       used to free memory for variables after use
+
+  6. iterpreter which convert js code into machine understable code (bytecode)
+
+51. Memory leak
+
+    causes for memory leak
+    ----------------------
+    1. global variables
+    2. closures with bigdata
+    3. Forgotten timers / intervals
+
+    avoide memory leak
+    -------------------
+    1. declare variables using let and const
+    2. clear timers
+    3. avoide unncessary holding large data in closure
+
+52. temporal deadzone
+
+    variables with let and const will not be hoisted , which throw an refrence error, this we will call it as temporal deadzone
  
