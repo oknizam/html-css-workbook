@@ -404,6 +404,27 @@ const arr4 = [1, 2];
 const newArr = [...arr4, 3] // immutable
 
 
+// call stack
+
+function A() {
+  console.log("A start");
+  B();
+  console.log("A end");
+}
+
+function B() {
+  console.log("B start");
+  C();
+  console.log("B end");
+}
+
+function C() {
+  console.log("C");
+}
+
+A();
+
+
 
 
 

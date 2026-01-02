@@ -541,4 +541,40 @@ splice -> create new array but old array also get modified, replace we will use 
 
 
 47. error handling working async/await is using try and catch block
+
+48. callstack
+
+    1. works in LIFO order 
+    2. Last function pushed to call stack will be executed first
+    3. primitive data stored in stack
+    4. object, function and arrays are stored in heap memory
+    5. let . = {
+    name:"nizam"  //heap memory
+  }
+
+  let obj1 = object ; callstack store refrence  of object , means memory location in obj1
+
+
+49. heap memory
+
+  1. object, function and arrays are stored in heap memory
+
+  let object = {
+    name:"nizam"  //heap memory
+  }
+
+  2. object are removed from heap memory when no refrence left
+  3. garbage colloector free memory
+    
+
+50. How v8 engine optimize js (nodejs, and browser)
+
+  1. In js, objects dynamic, at runtime propoties can be added and removed
+  2. v8 create shape of the object using hidden classes
+  3. if mutiple object having same structure it will reuse hidden classes
+
+  4. Inline cache
+    lookup will be created, if same property ur accessing mutiple time it will not look it in prototype chain it will directly fetch from inline cache which is lookup
+  5. Grabage colloector 
+      used to free memory for variables after use
  
