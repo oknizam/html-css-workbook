@@ -533,4 +533,12 @@ splice -> create new array but old array also get modified, replace we will use 
 
     4. Promise.any -> return promise which get resolved first , if not return all promises rejcected  
 
+46. callback hell and how we can avoide it
+
+  callback hell means we have function which callback , that callback has another call back and soon
+
+  we can resolve this by using promise
+
+
+47. error handling working async/await is using try and catch block
  

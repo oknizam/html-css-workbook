@@ -185,3 +185,47 @@ Promise.any([Promise.resolve(1), Promise.resolve(2),]).then((res) => console.log
 
 Promise.any([Promise.reject(1), Promise.reject(2),]).then((res) => console.log("promise.any 1", res)).catch(err => console.log("error in any", err))
 
+
+function A(cb) {
+  console.log("A");
+  cb()
+}
+
+function B(cb) {
+  console.log("B");
+  cb()
+}
+
+function C(cb) {
+  console.log("C");
+  cb()
+}
+
+function D() {
+  console.log("D");
+}
+
+A(() => {
+  B(() => {
+    C(() => {
+      D()
+    })
+  })
+})
+
+
+//  resolved using promise
+
+function step1() {
+  return Promise.resolve(console.log("A"))
+}
+
+function step2() {
+  return Promise.resolve(console.log("B"))
+}
+
+function step3() {
+  return Promise.resolve(console.log("B"))
+}
+
+step1().then(step2).then(step3)
