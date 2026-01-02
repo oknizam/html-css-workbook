@@ -105,3 +105,29 @@ function flattenArray(arr) {
 
 console.log(flattenArray([1, 2, 3, [4, 5], [6, 7, [8, 9]]]))
 
+
+// promise chaining
+// multiple linking .then() calls
+//  when doing promise chaining return should be mandatory
+
+Promise.resolve(1).then((result) => {
+  console.log(result); // 1
+  return result + 1;
+}).then((result) => {
+  console.log(result); // 2
+  return result + 1
+}).then((result) => {
+  console.log(result); // 3
+})
+
+// error chaining
+
+Promise.resolve("hello").then((result) => {
+  console.log(result); // hello
+  return "next";
+}).then((result) => {
+  console.log(result); // next
+  throw new Error("error chain");
+}).catch((err) => {
+  console.log("error", err)
+})

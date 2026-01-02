@@ -451,3 +451,43 @@ splice -> create new array but old array also get modified, replace we will use 
 
 [10, 2, 1].sort((a, b) => a - b); // numeric sort
 
+37. synchornous and asynchronous
+
+  task1
+  task2
+
+  synchronous -> means main thread will wait for task1 to get completed then task2 will start execution
+
+  asynchronous -> if we make task 1 async task2 will not wait for task1 to get completed , because task1 is running in background js which handled by webapis
+
+
+38. WebApis 
+
+    1. for timers -> browser timer api
+    2. fetch -> network stack handle http request , on getting response it will send it to eventloop
+
+39. Eventloop
+
+    1. callstack
+    2. Microtask queue (process.nextTick queue/ promise queue) 
+    3. Macrotask queue (timers, I/O) -> (timer queue, IO queue, check queue, close queue)
+    4. webapis (newtork request, timers, I/O)
+
+
+40. Microtask queue and Macrotask queue
+
+  1. Microtask queue -> eventloop takes this queue tasks priority over Macrotask queue, this queue involves
+  process.nextTick queue & promise queue -> , where api calls, callback of process.nextTick
+  2. Macrotask queue -> This queue involves I/O queue, timer queue, check queue (setImmediate), close queue (close handlers, sockets close etc)
+
+41. Promises 
+  promises are used to handle async operations which will run in bacground without bloacking main thread as callback, theay also resolve callback hell
+
+  they have three states
+  1. Pending
+  2. fulfilled
+  3. rejected
+
+42. Promise chaining
+
+  Promise chaining involves linking mutiple .then() calls , o/p of one async operation i/p to other
