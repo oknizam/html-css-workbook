@@ -127,7 +127,61 @@ Promise.resolve("hello").then((result) => {
   return "next";
 }).then((result) => {
   console.log(result); // next
-  throw new Error("error chain");
+  // throw new Error("error chain");
 }).catch((err) => {
   console.log("error", err)
 })
+
+
+// async / await
+
+
+function getData() {
+  console.log("start asyn/await")
+  return Promise.resolve(1);
+}
+
+async function main() {
+  try {
+    const res = await getData();
+    console.log("resolve asyn/await", res)
+    console.log("end asyn/await")
+  }
+  catch (err) {
+    console.log(err);
+  }
+}
+
+main()
+
+// promise.all 1
+
+Promise.all([Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)]).then((res) => console.log("promise.all 1", res)).catch(err => console.log(err))
+
+
+// promise.all 2
+
+Promise.all([Promise.resolve(1), Promise.resolve(2), Promise.reject("error in all")]).then((res) => console.log("promise.all 2", res)).catch(err => console.log(err))
+
+
+// promise.allSettled 1
+
+Promise.allSettled([Promise.resolve(1), Promise.resolve(2), Promise.reject("error in allSettled")]).then((res) => console.log("promise.allSettled", res))
+
+
+// promise.race 
+
+Promise.race([Promise.resolve(1), Promise.resolve(2),]).then((res) => console.log("promise.race 1", res)).catch(err => console.log(err))
+
+
+Promise.race([Promise.resolve("error in race"), Promise.resolve(1), Promise.resolve(2)]).then((res) => console.log("promise.race 1", res)).catch(err => console.log(err))
+
+
+// promise.any 
+//  any resolved promise
+Promise.any([Promise.resolve(1), Promise.resolve(2),]).then((res) => console.log("promise.any 1", res)).catch(err => console.log(err))
+
+// no resolved promise , return all rejected promise
+
+Promise.any([Promise.reject(1), Promise.reject(2),]).then((res) => console.log("promise.any 1", res)).catch(err => console.log("error in any", err))
+

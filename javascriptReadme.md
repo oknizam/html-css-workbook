@@ -491,3 +491,46 @@ splice -> create new array but old array also get modified, replace we will use 
 42. Promise chaining
 
   Promise chaining involves linking mutiple .then() calls , o/p of one async operation i/p to other
+
+43. Difference between async/await and Promises
+
+  promises we know it will uses .then() , .catch() chaining but in async/await code structure looks like  synchronous but asynchronous
+
+  1. asyn/await
+  awaited function should be async
+
+  function getData(){
+    console.log("Hello")
+    return Promise.resolve(1);
+  }
+  
+  async function main(){
+       try
+  {
+   const res = await getData(); 
+    console.log(res)
+   console.log("hello1")
+  }
+  catch(err){
+    console.log(err);
+  }
+  }
+  
+  main()
+
+44. What happens if a Promise is not awaited?
+
+  1. Promise will be ignored
+  2. error will not be handled
+
+45. Promise.all, allSettled, race, any 
+
+    1. Promise.all -> it will return array of response if all promises fulfilled, if one of promise get rejected throw error will go to  catch block
+
+    2. Promise.allSettled -> return all promises results in array of objects with response include status, fullfilled, rejected 
+
+    3. Promise.race -> return promise response which get resolved or rejected first 
+
+    4. Promise.any -> return promise which get resolved first , if not return all promises rejcected  
+
+ 
