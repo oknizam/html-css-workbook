@@ -335,3 +335,48 @@ Promise.prototype.myAllSettledPromise = function (promises) {
     }
   })
 }
+
+
+// polyfill for call
+
+Function.prototype.myCall = function (context, ...args) {
+  context = context ? context : globalThis;
+
+  const fnSymbol = Symbol(); // avoid property collision
+  context[fnSymbol] = this;
+  const result = context[fnSymbol](...args)
+  delete context[fnSymbol];
+  return result;
+}
+
+// polyfill for apply
+
+Function.prototype.myApply = function (context, args = []) {
+
+  context = context ? context : globalThis;
+
+  const fnSymbol = Symbol(); //to avoide override function property
+  context[fnSymbol] = this;
+  const result = context[fnSymbol](...args);
+  delete context[fnSymbol];
+  return result;
+}
+
+// polyfill for bind
+
+Function.prototype.myBind = function (context, ...bindArgs) {
+  const originalFn = this;
+
+  function boundFunction(...callArgs) {
+    // If called with `new`, ignore bound context
+    const isNew = this instanceof boundFunction;
+    const finalThis = isNew ? this : context;
+
+    return originalFn.apply(finalThis, [...bindArgs, ...callArgs]);
+  }
+
+  // Preserve prototype chain
+  boundFunction.prototype = Object.create(originalFn.prototype);
+
+  return boundFunction;
+};
