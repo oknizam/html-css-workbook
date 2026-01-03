@@ -229,3 +229,109 @@ function step3() {
 }
 
 step1().then(step2).then(step3)
+
+
+// promise all
+
+Promise.prototype.myAllPromise = function (promises) {
+  return new Promise((resolve, reject) => {
+    if (!Array.isArray(promises)) {
+      throw new Error("Promises must be array")
+    }
+
+    let result = [];
+    let completed = 0;
+
+    promises.forEach((p, index) => {
+      Promise.resolve(p).then((res) => {
+        result[index] = res;
+        completed++;
+        if (completed === promises.length) {
+          resolve(result)
+        }
+      }).catch(error => reject(error));
+
+    });
+
+    if (promises.length === 0) {
+      resolve([])
+    }
+  })
+}
+
+
+// promise race
+
+Promise.prototype.myRacePromise = function (promises) {
+  return new Promise((resolve, reject) => {
+    if (!Array.isArray(promises)) {
+      throw new Error("Promises must be array")
+    }
+    promises.forEach((p) => {
+      Promise.resolve(p)
+        .then((res) => resolve(res))
+        .catch(err => reject(err))
+    });
+
+  })
+}
+
+// promise any
+
+Promise.prototype.myAnyPromise = function (promises) {
+  return new Promise((resolve, reject) => {
+    if (!Array.isArray(promises)) {
+      throw new Error("Promises must be array")
+    }
+    let error = [];
+    let completed = 0;
+    promises.forEach((p, i) => {
+      Promise.resolve(p)
+        .then((res) => resolve(res))
+        .catch(err => {
+          error[i] = err;
+          completed++;
+          if (completed === promises.length) {
+            reject(error)
+          }
+        })
+    });
+
+    if (promises === 0) {
+      resolve([])
+    }
+  })
+}
+
+// promise all settled
+
+
+Promise.prototype.myAllSettledPromise = function (promises) {
+  return new Promise((resolve) => {
+    if (!Array.isArray(promises)) {
+      throw new Error("Promises must be array")
+    }
+    let result = [];
+    let completed = 0;
+    promises.forEach((p, i) => {
+      Promise.resolve(p)
+        .then((res) => {
+          result = { status: "fulfilled", data: res };
+          completed++;
+        })
+        .catch(err => {
+          result = { status: "rejected", data: err };
+          completed++;
+        })
+        .finally(() => {
+          if (completed === promises.length) {
+            resolve(result)
+          }
+        })
+    });
+
+    if (promises === 0) {
+      resolve([])
+    }
+  })
+}
