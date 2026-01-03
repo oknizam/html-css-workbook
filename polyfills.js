@@ -422,3 +422,49 @@ const cloneObject = {
 }
 
 deepClone(cloneObject)
+
+// flatten object 
+
+function flattenObject(obj, parentKey, res = {}) {
+  for (let key in obj) {
+    let newKey = parentKey ? `${parentKey}.${key}` : key;
+
+    if (obj[key] !== null && !Array.isArray(obj[key]) && obj[key] === 'object') {
+      flattenObject(obj[key], newKey, res);
+    }
+    else {
+      res[newKey] = obj[key];
+    }
+  }
+  return res;
+}
+
+
+// memoization
+
+function memoization(fn) {
+  let cache = {};
+
+  return function (...args) {
+    const key = JSON.stringify(args);
+
+    if (cache[key] !== undefined) {
+      console.log("cached data", cache[key]);
+      return cache[key];
+    }
+
+    const result = fn(...args);
+    cache[key] = result;
+    return cache[key];
+  }
+}
+
+function add(a, b) {
+  return a + b;
+}
+
+const addMemo = memoization(add);
+
+addMemo(2, 3);
+addMemo(4, 5);
+addMemo(2, 3);

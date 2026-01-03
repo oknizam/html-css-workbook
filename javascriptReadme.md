@@ -602,4 +602,15 @@ splice -> create new array but old array also get modified, replace we will use 
 53. polyfill
 
   Some of browsers will no support es6 features , polyfill will create same feature which will work in all browsers
+
+
+54. promise polyfills any, all, race , allSettled
+
+55. flattenobject and flattenArray
+
+56. deepclone
+
+57. polyfill for call, apply and bind
+
+58. function memoization
  
