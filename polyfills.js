@@ -380,3 +380,45 @@ Function.prototype.myBind = function (context, ...bindArgs) {
 
   return boundFunction;
 };
+
+function sayHello(...args) {
+  console.log(this.name, args);
+}
+
+const object = {
+  name: "nizam"
+}
+const callFunction = sayHello.bind(object, 1, 2, 3);
+callFunction(4, 5, 6);
+
+
+// deep clone
+
+function deepClone(obj) {
+
+  // base condition
+
+  if (obj === null || typeof obj !== "object") { // premitive value
+    return obj;
+  }
+
+  let clone = Array.isArray(obj) ? [] : {};
+
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      clone[key] = deepClone(obj[key]);
+    }
+  }
+  console.log("clone", clone)
+  return clone;
+}
+
+
+const cloneObject = {
+  a: 10,
+  b: {
+    b1: 20
+  }
+}
+
+deepClone(cloneObject)

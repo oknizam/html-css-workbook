@@ -597,4 +597,9 @@ splice -> create new array but old array also get modified, replace we will use 
 52. temporal deadzone
 
     variables with let and const will not be hoisted , which throw an refrence error, this we will call it as temporal deadzone
+
+
+53. polyfill
+
+  Some of browsers will no support es6 features , polyfill will create same feature which will work in all browsers
  
