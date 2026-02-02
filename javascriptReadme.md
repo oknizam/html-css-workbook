@@ -3,14 +3,36 @@
   var a = 10;
   let and const will not be hoisted it will throght an refrence error saying a is not defined
 
+  1. function declartion will also move to top means we can call functions before declaration
+  2. arrow function cannot be throw refrence error
+  3. display();
+  const display = function (){
+    return "hello";
+  };
+  this will also throgh an error
+
 2. what is null and undefined
    both are no value data types
-   1. By default if varbale does not have anything varibale value will be undefined or u returing something from function which doiesn't has any value it will say undefined
+   1. By default if varbale does not have anything varibale value will be undefined or u returing something from function which doiesn't has any value it will say undefined 
    2. Null we have to manually assign saying this vriable has null value
+   3. Un intialized variables we can say that they hold undefined value
 
    mostly we use null for object, because we can't define {} empty object default value
 
 3. type corecion
+
+  1. 1 + "2" -> converted to string  -> "12"
+  2. 1 - "2" -> 2 type casted to number -> -1
+  3. 1 * "2" -> 2 type casted to number -> 2
+  4. 1 / "2" -> 2 type casted to number -> 0.5
+  5. 0 == undefined -> false
+  6. 1+null -> 1 -> null is typecasted to binary
+  7. 1+undefined NaN
+  8. null and "" empty string converted to binary 0 where undefined not so allways any mathemetci opertion with undefined return NaN
+  
+
+  except "+" operator if we have number on left and if we have string on right all mathemeticla operators try to convert right side string to number
+ 
   type corecion mening "" == 0 undefined becomes typecasted to boolean and return true
   Example: "" == 0, 20+"Abc" so here 20 will be typecasted to string output will be "20Abc"
 
@@ -108,6 +130,30 @@
       }
 
       test1.call(testObj) //undefined
+
+    10. why we use arrow function in callback
+
+      function Outer(){
+        this.count = 0;
+
+        setTimeout(()=>{
+          this.count++; //here this will be take from outer scope
+          console.log(this.count)
+        },1000)
+      }
+
+       function Outer(){
+        this.count = 0;
+
+        setTimeout(function(){
+          this.count++; //here this will be window, but in window object we don't have count it will give undefined, it will not check function lexical this
+          console.log(this.count)
+        },1000)
+
+        in above case setTimeout call my function as plain function, plain function allways refre window object
+        
+      }
+      
 8. Lexical scope meaning 
 
       {
