@@ -174,7 +174,7 @@ Promise.allSettled([Promise.resolve(1), Promise.resolve(2), Promise.reject("erro
 Promise.race([Promise.resolve(1), Promise.resolve(2),]).then((res) => console.log("promise.race 1", res)).catch(err => console.log(err))
 
 
-Promise.race([Promise.resolve("error in race"), Promise.resolve(1), Promise.resolve(2)]).then((res) => console.log("promise.race 1", res)).catch(err => console.log(err))
+Promise.race([Promise.reject("error in race"), Promise.resolve(1), Promise.resolve(2)]).then((res) => console.log("promise.race 1", res)).catch(err => console.log(err))
 
 
 // promise.any 
@@ -186,6 +186,8 @@ Promise.any([Promise.resolve(1), Promise.resolve(2),]).then((res) => console.log
 Promise.any([Promise.reject(1), Promise.reject(2),]).then((res) => console.log("promise.any 1", res)).catch(err => console.log("error in any", err))
 
 
+
+// call back hell or pyramid of doom
 function A(cb) {
   console.log("A");
   cb()
