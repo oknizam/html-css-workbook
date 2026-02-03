@@ -17,3 +17,5 @@ Dog.prototype.constructor = Dog; // here we restoring it
 
 const d = new Dog("bruno", "husky");
 d.speak();
+
+console.log(Animal.prototype === d.__proto__.__proto__);
