@@ -123,7 +123,16 @@
   work with absolute, relative ,sticky, and fixed
 
 
+# 14. xss prevent
 
+  1. Validate inputs
+  2. avoide innerHtmnl , if using snitize using DOMpurify
+  3. avoide inile js and html click="onclick"  instead docuemnt.addEventListner("click",onclick)
+  4. Contenet security policy
+    1. prevent injecting milicious js code from other websites
+    2. prevent inline cripts
+    3. added to index.html from server setting response headers 
+  5. validate i/p BE also
 
 
 
