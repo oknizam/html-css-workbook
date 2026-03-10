@@ -338,6 +338,9 @@ Promise.prototype.myAllSettledPromise = function (promises) {
   })
 }
 
+let a = Symbol();
+let b = Symbol();
+console.log(a === b) // false , creates unique identifiers
 
 // polyfill for call
 
