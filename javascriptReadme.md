@@ -660,3 +660,33 @@ splice -> create new array but old array also get modified, replace we will use 
 
 58. function memoization
  
+
+59. set and map
+
+  1. set stores only values
+  2. non duplicate values
+  3. methods
+    1. set.add(value)
+    2. set.has(value)
+    3. set.delete(value)
+    4. set.size
+    5. set.clear()
+
+  
+  1. Map key , value pair
+  2. keys are unique like object
+  3. similir to object with any types
+  4. methods
+    1. map.set(key,value)
+    2. map.get(key)
+    3. map.delete(key)
+    4. map.size
+    5. map.keys().next().value -> least used key
+
+
+60. weak map and set
+
+  1. stores only objects
+  2. It will not store premitive types
+  3. values will object in case of set
+  4. keys will be object in case of map

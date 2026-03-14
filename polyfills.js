@@ -434,7 +434,7 @@ function flattenObject(obj, parentKey, res = {}) {
   for (let key in obj) {
     let newKey = parentKey ? `${parentKey}.${key}` : key;
 
-    if (obj[key] !== null && !Array.isArray(obj[key]) && obj[key] === 'object') {
+    if (obj[key] !== null && !Array.isArray(obj[key]) && typeof obj[key] === 'object') {
       flattenObject(obj[key], newKey, res);
     }
     else {
