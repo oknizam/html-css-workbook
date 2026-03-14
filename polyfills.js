@@ -473,3 +473,54 @@ const addMemo = memoization(add);
 addMemo(2, 3);
 addMemo(4, 5);
 addMemo(2, 3);
+
+
+
+// debounce
+
+function debounce(fn, delay = 300) {
+  let timeout;
+
+  return function (...args) {
+    if (timeout) clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      fn.apply(this, args)
+    }, delay)
+  }
+}
+
+const debounceFunc = debounce((text) => {
+  console.log("search text", text)
+}, 300);
+
+debounceFunc("n");
+debounceFunc("ni");
+debounceFunc("niz");
+debounceFunc("niza");
+debounceFunc("nizam");
+
+// throttle
+
+function throttle(fn, delay = 1000) {
+  let timeout;
+  return function (...args) {
+    if (timeout) return;
+    fn.apply(this, args);
+    timeout = setTimeout(() => {
+      timeout = null;
+    }, delay)
+  }
+}
+
+
+const throttleFunc = throttle(() => {
+  console.log("throttle call")
+}, 1000)
+
+throttleFunc();
+throttleFunc();
+
+setTimeout(() => {
+  throttleFunc();
+}, 1500)
