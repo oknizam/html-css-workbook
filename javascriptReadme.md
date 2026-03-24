@@ -690,3 +690,89 @@ splice -> create new array but old array also get modified, replace we will use 
   2. It will not store premitive types
   3. values will object in case of set
   4. keys will be object in case of map
+
+
+61. Garbage collector
+
+  1. autometcially free memory for objects which are not reachable or objects does not have refrences
+
+
+62. what is typescript
+
+  1. js check type at runtime
+  2. ts check type at complie time
+
+
+63. interface vs type
+
+interface User {
+  name: string
+}
+
+type User = {
+  name: string
+}
+
+1. interface is better for objects, classes
+2. type is better for union
+
+type id = string | number;
+
+64. generic 
+
+  we can write generic resusable type function
+
+  function identity<T>(value:T):T{
+    return value
+  }
+
+
+65. keyof
+
+  type User = {name:string,age:string}
+
+  type Keys = keyof User;
+
+
+66. union (|) and intersection (&)
+
+  1. union (|) 
+   type Id = string | number
+
+  2. intersection (&)
+
+    type A = { name : string };
+    type B = { age : string };
+
+    type C = A & B;
+
+67. Any , uknown
+
+  1. let a:any = 20;
+
+    type checking will not happen , completely removed
+
+  2. let a:uknown = 20;
+
+    here we can make check before use
+
+    if(typeof a ==="number"){
+      proceed;
+    }
+
+
+68. enums 
+
+  enums Role {
+    USER:"USER",
+    AGENT:"AGENT",
+    ADMIN:"ADMIN"
+  }
+
+function checkAdminAccess(role:Role){
+  if(role === Role.ADMIN) return true;
+
+  return false
+}
+
+69. Api responses mostly union are used
