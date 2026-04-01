@@ -776,3 +776,186 @@ function checkAdminAccess(role:Role){
 }
 
 69. Api responses mostly union are used
+
+
+70. Data types in JS
+
+  1. Primitive -> number, string , undefined , null, boolean, symbol  -> call by value -> copy direct value passed
+  2. Non premitive -> array , objects -> call by refrence -> copy -> refrence (address) is passed , avoide(spread operator, deep clone)
+
+
+  3. Symbol -> 
+    1. this one of ES6 feature, 
+    2. used for immutable keys in an object, 
+    3. want to maintain privacy for some keys in Object
+    4. Avoide key conflicts
+
+
+
+  const id1 = Symbol("id"); 
+  const id2 = Symbol("id"); 
+
+  id1===id2 // result false
+
+  const password = Symbol("password")
+  let obj = {
+    username:"oknizam",
+    [password] :"12345"
+  }
+
+  console.log(Object.keys(obj))
+
+
+
+72. var, let and const
+
+   1. var -> global scope , supports hoisting, only varibale is hoisted assigned undefined value, value will not be hoisted
+   2. let and const -> block scope, these variables are not hoisted, if we try to access variables before they declared throw refrence error
+
+73. scope global, block and function
+
+      var a =10;
+
+      {
+        var a= 20;
+        hello()
+
+      }
+
+      function hello(){
+          var a=30; // value restricted to function only
+      }
+      
+      console.log(a) // output will be 20 becuase , var which we updating inside function will be insidefunction scope , not outside function
+
+74. falsy and truthy values
+
+  1. falsy values (0,-0, undefined, null, "", false, null, NaN)
+
+  2. Truthy values (1,"hello", true, -2, [] ,{},"false", Infinity)
+
+75. Closure in real life example 
+
+    1. function memoization
+    2. debounce
+    3. throttle
+
+76. Higher order functions
+
+    1. functions which takes other function as argument or return function called higher order functions
+
+    2. Real life example 
+      
+       map, filter and reduce
+
+    3. function muliply(a){
+        return function(b){
+          return a*b
+        }
+      }
+
+      muliply(1)(2)() -> this we can also called function currying
+
+77. function currying means
+
+    tranfer number of aruments inti number of functions
+
+78. function declaration vs expression
+
+
+    1. function declaration 
+
+      function add(a,b){
+          return a+b;
+      }
+
+    2. function expression
+
+     const add = function(a,b){
+      return a+b;
+     }
+
+    3. Main diffrence is hositing will not work in function expression
+
+    4. function expression is used when function is used as value, callback, IIF
+
+79. Arrow vs normal function 
+
+  1. Arrow does not have their own this like normal function , they will inherit from lexical scope
+
+  2. function A(name){
+      this.name= name;
+
+      setTimeout(()=>{
+        console.log(this.name) // nizam 
+      })
+  }
+
+  const a = new A("nizam")
+
+  3. we can't use arrow functions for call, bind and apply
+  4. arrow functions dont have prototype, normal function will be having prototype
+
+
+80. this keyword 
+
+  1. by default global object
+  2. if we are in strcit mode , this undefined
+  3. In below example this belongs to object
+
+      let obj  = {
+          name:"nizam",
+          greet:function(){
+              console.log(this.name)
+          }
+      }
+      obj.greet() ; // this will return nizam
+
+  4. this will return undefined
+      let obj  ={
+          name:"nizam",
+          greet:function(){
+              let that = this;  adding this will return name value
+                return function(){
+                      console.log(that.name)
+              }
+          }
+      }
+
+      const a =obj.greet()
+
+      a()
+
+81. generator function
+
+  1. function declaration starts with *  
+
+      function* generator(){
+        yield 1;
+        yield 2;
+        yield 3;
+      }
+
+
+  2. we can pause and resume function execution
+
+  3. yeild will pasue give output 
+
+  4. function call
+
+    const gen = generator();
+
+    gen.next() ; 
+    output :
+    { value: '1', done: false }
+
+  5. to resume we need to call again
+
+
+82. Weak map and weak set
+
+  1. only holds key of type objects 
+  2. not support preamitive types
+  3. we can iterate keys
+  4. don't have access to size
+  5. store weak refrences to object, help in autometic garbage collection
