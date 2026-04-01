@@ -959,3 +959,23 @@ function checkAdminAccess(role:Role){
   3. we can iterate keys
   4. don't have access to size
   5. store weak refrences to object, help in autometic garbage collection
+
+
+83. Inheritance in js
+
+    we can achive inheritence in js using prototype
+
+
+84. event delegation 
+
+  1. attach single event listner to parent
+  2. handle events for child elements using event bubbling
+
+  3.  example
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        console.log("Clicked");
+      });
+    });
