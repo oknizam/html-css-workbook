@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+  <title> Todo App</title>
+</head>
+
+  <style>
+    .completed{
+      text-decoration: line-through;
+    }
+  </style>
+  <script>
+
+    function addItem(){
+      const input = document.getElementById("input");
+      const value = input.value.trim();
+
+      if(!value) alert("please enter value");
+
+      const listElement = document.getElementById("list");
+      const LiElemennt = document.createElement("li");
+      const spanElement = document.createElement("span");
+      const btnElement = document.createElement("button");
+
+      //element check uncheck
+      spanElement.textContent = value;  
+      spanElement.onclick =function(){
+        spanElement.classList.toggle("completed") 
+      }
+
+      btnElement.textContent = "X";
+      btnElement.onclick = function(){
+        listElement.removeChild(LiElemennt);
+      }
+      
+      LiElemennt.appendChild(spanElement);
+      LiElemennt.appendChild(btnElement);
+      listElement.appendChild(LiElemennt);
+
+      input.value ="";
+
+    }
+
+  </script>
+  <body>
+
+    <h4>Todo App</h4>
+    <input id="input" type="text" placeholder="enter value"/>
+    <button id="btn" onclick="addItem()">Add Item</button>
+    <ul id="list"></ul>
+  </body>
+</html>
