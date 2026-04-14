@@ -979,3 +979,16 @@ function checkAdminAccess(role:Role){
         console.log("Clicked");
       });
     });
+
+
+# 85. function declartaion vs function expression
+
+1. function declartaion 
+
+  1. hoisted
+  2. function must have name
+
+2. function expression
+
+  1. No hoisting
+  2. treated as variable 
